@@ -62,8 +62,8 @@ flutter build linux --debug
 
 | Платформа | Ссылка |
 |-----------|--------|
-| Android APK (debug) | [app-debug.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.0/app-debug.apk) |
-| Linux x64 (debug) | [coffee-linux.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-linux.tar.gz) |
+| Android APK (release) | [cofee-release.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-release.apk) |
+| Linux x64 (release) | [cofee-linux-release.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-linux-release.tar.gz) |
 
 ---
 
