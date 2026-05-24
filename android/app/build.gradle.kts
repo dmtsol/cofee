@@ -34,24 +34,6 @@ android {
     }
 }
 
-tasks.register("renameReleaseApk") {
-    doLast {
-        val buildDir = project.layout.buildDirectory.get().asFile
-        val apkDir = file("$buildDir/outputs/flutter-apk")
-        val oldFile = file("$apkDir/app-release.apk")
-        val newFile = file("$apkDir/cofee-release.apk")
-        if (oldFile.exists()) {
-            oldFile.renameTo(newFile)
-        }
-    }
-}
-
-tasks.whenTaskAdded {
-    if (name.contains("assemble") && name.contains("Release")) {
-        finalizedBy("renameReleaseApk")
-    }
-}
-
 kotlin {
     compilerOptions {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17

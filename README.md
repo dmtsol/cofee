@@ -84,11 +84,21 @@ flutter build linux --release
 # → build/linux/x64/release/bundle/
 ```
 
+### Автоматизация (Makefile)
+
+```bash
+make android-release   # собрать Android release
+make linux-release     # собрать Linux release
+make help              # список всех целей
+```
+
+Makefile упаковывает Linux-бинарник в `cofee-{version}-linux-{variant}.tar.gz` автоматически.
+
 ### Примечания
 
 - Android SDK и NDK загружаются автоматически при первой сборке через Gradle
 - Для `flutter build apk --release` используется debug-подпись (не подходит для Google Play)
-- APK переименовывается в `cofee-{variant}.apk` на этапе сборки (см. `android/app/build.gradle.kts`)
+- APK переименовывается с указанием версии через Makefile (см. `Makefile`)
 
 ---
 
@@ -106,8 +116,8 @@ flutter build linux --release
 
 | Платформа | Ссылка |
 |-----------|--------|
-| Android APK (release) | [cofee-release.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-release.apk) |
-| Linux x64 (release) | [cofee-linux-release.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-linux-release.tar.gz) |
+| Android APK (release) | [cofee-1.0.0-release.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-1.0.0-release.apk) |
+| Linux x64 (release) | [cofee-1.0.0-linux-release.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-1.0.0-linux-release.tar.gz) |
 
 ---
 
