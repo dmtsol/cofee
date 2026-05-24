@@ -10,6 +10,11 @@ A Flutter app for calculating coffee-to-water proportions with custom ratios. Sa
 - **Save & load recipes** — locally stored recipes with tap-to-load
 - **Material 3 theming** — light, dark, or follow system
 
+## Downloads
+
+- [Android APK (debug)](https://github.com/dmtsol/cofee/releases/download/v1.0.0/app-debug.apk)
+- [Linux x64 (debug)](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-linux.tar.gz)
+
 ## Build & Run
 
 ```bash
