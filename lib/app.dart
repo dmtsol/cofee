@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/theme_provider.dart';
-import 'screens/home_screen.dart';
+import 'screens/recipes_screen.dart';
 
 class CoffeeApp extends StatelessWidget {
   const CoffeeApp({super.key});
@@ -16,7 +16,7 @@ class CoffeeApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       theme: _buildLightTheme(),
       darkTheme: _buildDarkTheme(),
-      home: const HomeScreen(),
+      home: const RecipesScreen(),
     );
   }
 

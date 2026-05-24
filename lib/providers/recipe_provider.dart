@@ -23,6 +23,11 @@ class RecipeProvider extends ChangeNotifier {
     await loadRecipes();
   }
 
+  Future<void> updateRecipe(CoffeeCalculation recipe) async {
+    await _storage.update(recipe);
+    await loadRecipes();
+  }
+
   Future<void> deleteRecipe(int id) async {
     await _storage.delete(id);
     await loadRecipes();

@@ -35,6 +35,15 @@ class StorageService {
     await _writeAll(list);
   }
 
+  Future<void> update(CoffeeCalculation calc) async {
+    final list = await getAll();
+    final index = list.indexWhere((c) => c.id == calc.id);
+    if (index != -1) {
+      list[index] = calc;
+      await _writeAll(list);
+    }
+  }
+
   Future<void> delete(int id) async {
     final list = await getAll();
     list.removeWhere((c) => c.id == id);

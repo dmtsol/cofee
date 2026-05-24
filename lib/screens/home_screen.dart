@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/coffee_calculation.dart';
 import '../providers/recipe_provider.dart';
-import '../providers/theme_provider.dart';
-import 'recipes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final CoffeeCalculation? recipe;
+
+  const HomeScreen({super.key, this.recipe});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,19 +21,31 @@ class _HomeScreenState extends State<HomeScreen> {
   final _waterController = TextEditingController();
 
   double _ratio = 0;
+  bool _isLoading = false;
+
+  bool get _isEditing => widget.recipe != null;
 
   @override
   void initState() {
     super.initState();
-    _baseCoffeeController.text = '60';
-    _baseWaterController.text = '1000';
-    _grindController.text = '28';
-    _waterController.text = '300';
+    if (_isEditing) {
+      final r = widget.recipe!;
+      _nameController.text = r.name;
+      _grindController.text = r.grindSize.toString();
+      _baseCoffeeController.text = _formatValue(r.baseCoffee);
+      _baseWaterController.text = _formatValue(r.baseWater);
+      _coffeeController.text = _formatValue(r.coffeeGrams);
+      _waterController.text = _formatValue(r.waterMl);
+    } else {
+      _baseCoffeeController.text = '60';
+      _baseWaterController.text = '1000';
+      _grindController.text = '28';
+      _waterController.text = '300';
+    }
     _updateRatio();
-    _coffeeController.text = _formatValue(300 * _ratio);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<RecipeProvider>().loadRecipes();
-    });
+    if (!_isEditing) {
+      _coffeeController.text = _formatValue(300 * _ratio);
+    }
   }
 
   @override
@@ -125,24 +137,38 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
 
-    final calc = CoffeeCalculation(
-      name: name,
-      grindSize: grind,
-      baseCoffee: baseCoffee,
-      baseWater: baseWater,
-      coffeeGrams: coffee,
-      waterMl: water,
-      createdAt: DateTime.now(),
-    );
+    setState(() => _isLoading = true);
 
     try {
-      await context.read<RecipeProvider>().saveRecipe(calc);
+      if (_isEditing) {
+        final updated = widget.recipe!.copyWith(
+          name: name,
+          grindSize: grind,
+          baseCoffee: baseCoffee,
+          baseWater: baseWater,
+          coffeeGrams: coffee,
+          waterMl: water,
+        );
+        await context.read<RecipeProvider>().updateRecipe(updated);
+      } else {
+        final calc = CoffeeCalculation(
+          name: name,
+          grindSize: grind,
+          baseCoffee: baseCoffee,
+          baseWater: baseWater,
+          coffeeGrams: coffee,
+          waterMl: water,
+          createdAt: DateTime.now(),
+        );
+        await context.read<RecipeProvider>().saveRecipe(calc);
+      }
       if (mounted) {
-        _showSnackBar('Рецепт сохранён');
+        Navigator.pop(context, true);
       }
     } catch (e) {
       if (mounted) {
         _showSnackBar('Ошибка: $e');
+        setState(() => _isLoading = false);
       }
     }
   }
@@ -153,78 +179,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _openRecipes() async {
-    final result = await Navigator.push<CoffeeCalculation>(
-      context,
-      MaterialPageRoute(builder: (_) => const RecipesScreen()),
-    );
-    if (result != null && mounted) {
-      _loadRecipe(result);
-    }
-  }
-
-  void _loadRecipe(CoffeeCalculation recipe) {
-    setState(() {
-      _nameController.text = recipe.name;
-      _grindController.text = recipe.grindSize.toString();
-      _baseCoffeeController.text = _formatValue(recipe.baseCoffee);
-      _baseWaterController.text = _formatValue(recipe.baseWater);
-      _coffeeController.text = _formatValue(recipe.coffeeGrams);
-      _waterController.text = _formatValue(recipe.waterMl);
-      _updateRatio();
-    });
-  }
-
-  void _showThemeDialog() {
-    final themeProvider = context.read<ThemeProvider>();
-    ThemeMode currentMode = themeProvider.themeMode;
-
-    showDialog(
-      context: context,
-      builder: (ctx) {
-        return StatefulBuilder(
-          builder: (context, setDialogState) {
-            return AlertDialog(
-              title: const Text('Тема оформления'),
-              content: RadioGroup<ThemeMode>(
-                groupValue: currentMode,
-                onChanged: (value) {
-                  setDialogState(() => currentMode = value!);
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    RadioListTile<ThemeMode>(
-                      title: const Text('Как в системе'),
-                      value: ThemeMode.system,
-                    ),
-                    RadioListTile<ThemeMode>(
-                      title: const Text('Светлая'),
-                      value: ThemeMode.light,
-                    ),
-                    RadioListTile<ThemeMode>(
-                      title: const Text('Тёмная'),
-                      value: ThemeMode.dark,
-                    ),
-                  ],
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    themeProvider.setThemeMode(currentMode);
-                    Navigator.pop(ctx);
-                  },
-                  child: const Text('Применить'),
-                ),
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -232,20 +186,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cofee'),
+        title: Text(_isEditing ? 'Редактировать рецепт' : 'Новый рецепт'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.palette_outlined),
-            onPressed: _showThemeDialog,
-            tooltip: 'Тема оформления',
-          ),
-          IconButton(
-            icon: const Icon(Icons.menu_book_outlined),
-            onPressed: _openRecipes,
-            tooltip: 'Рецепты',
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -339,9 +281,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _saveRecipe,
-              icon: const Icon(Icons.save_outlined),
-              label: const Text('Сохранить рецепт'),
+              onPressed: _isLoading ? null : _saveRecipe,
+              icon: _isLoading
+                  ? SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: colorScheme.onPrimary,
+                      ),
+                    )
+                  : const Icon(Icons.save_outlined),
+              label: Text(_isEditing ? 'Сохранить изменения' : 'Сохранить рецепт'),
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
