@@ -1,37 +1,72 @@
-# Cofee — Coffee Proportion Calculator
+# Cofee — Калькулятор пропорций кофе
 
-A Flutter app for calculating coffee-to-water proportions with custom ratios. Save your favorite recipes, switch between light/dark/system themes.
+Мобильное приложение для расчёта пропорций кофе и воды при заваривании. Позволяет задать собственное базовое соотношение (например, 60 г кофе на 1000 мл воды), автоматически пересчитывает один параметр из другого, сохраняет рецепты и переключает тему оформления.
 
-## Features
+---
 
-- **Custom ratio** — set your base coffee (g) and water (ml), e.g. 60g per 1000ml
-- **Bidirectional calculation** — enter coffee → water auto-calculates, and vice versa
-- **Grind size** — save grind setting alongside each recipe
-- **Save & load recipes** — locally stored recipes with tap-to-load
-- **Material 3 theming** — light, dark, or follow system
+## Возможности
+
+- **Произвольная пропорция** — задайте базовые значения кофе (г) и воды (мл). Например, 60 г на 1000 мл — и приложение рассчитает соотношение.
+- **Двусторонний расчёт** — измените количество кофе → вода пересчитается автоматически, и наоборот.
+- **Помол** — сохраняйте номер помола вместе с каждым рецептом.
+- **Сохранение рецептов** — все рецепты хранятся локально на устройстве. Можно загрузить любой сохранённый рецепт в калькулятор одним нажатием.
+- **Три темы оформления** — светлая, тёмная или системная (Material 3).
+
+---
+
+## Скриншоты
+
+_(добавьте скриншоты приложения в папку `screenshots/`)_
+
+---
+
+## Как использовать
+
+1. Установите приложение (см. [ Downloads](#downloads)).
+2. На главном экране задайте **базовую пропорцию**: например, кофе 60 г, вода 1000 мл.
+3. Укажите желаемое количество воды (или кофе) — второе поле рассчитается автоматически.
+4. При необходимости укажите помол и сохраните рецепт.
+5. В разделе «Рецепты» можно просмотреть, удалить или загрузить сохранённые рецепты.
+
+---
+
+## Сборка из исходников
+
+```bash
+# Установить зависимости
+flutter pub get
+
+# Запустить на подключённом устройстве
+flutter run
+
+# Собрать APK (Android)
+flutter build apk --debug
+
+# Собрать Linux (x64)
+flutter build linux --debug
+```
+
+---
+
+## Технологии
+
+- **Flutter** / **Dart**
+- **Provider** — управление состоянием
+- **path_provider** — хранение рецептов в JSON-файле
+- **shared_preferences** — сохранение выбранной темы
+- **Material Design 3**
+
+---
 
 ## Downloads
 
-- [Android APK (debug)](https://github.com/dmtsol/cofee/releases/download/v1.0.0/app-debug.apk)
-- [Linux x64 (debug)](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-linux.tar.gz)
+| Платформа | Ссылка |
+|-----------|--------|
+| Android APK (debug) | [app-debug.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.0/app-debug.apk) |
+| Linux x64 (debug) | [coffee-linux.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-linux.tar.gz) |
 
-## Build & Run
+---
 
-```bash
-# Get dependencies
-flutter pub get
+## Лицензия
 
-# Run on connected device
-flutter run
-
-# Build APK (Android)
-flutter build apk --debug
-```
-
-## Tech Stack
-
-- Flutter / Dart
-- Provider (state management)
-- path_provider (JSON file storage)
-- shared_preferences (theme persistence)
-- Material Design 3
+MIT License — см. файл [LICENSE](LICENSE).
