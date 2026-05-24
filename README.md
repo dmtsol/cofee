@@ -16,7 +16,25 @@
 
 ## Скриншоты
 
-_(добавьте скриншоты приложения в папку `screenshots/`)_
+### Android
+
+<p float="left">
+  <img src="screenshots/android/cofee-android-01.jpg" width="250" />
+  <img src="screenshots/android/cofee-android-02.jpg" width="250" />
+  <img src="screenshots/android/cofee-android-03.jpg" width="250" />
+</p>
+
+### Linux
+
+<p float="left">
+  <img src="screenshots/linux/cofee-linux-01.png" width="400" />
+  <img src="screenshots/linux/cofee-linux-02.png" width="400" />
+</p>
+<p float="left">
+  <img src="screenshots/linux/cofee-linux-03.png" width="400" />
+  <img src="screenshots/linux/cofee-linux-04.png" width="400" />
+  <img src="screenshots/linux/cofee-linux-05.png" width="400" />
+</p>
 
 ---
 
