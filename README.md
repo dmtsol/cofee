@@ -47,6 +47,19 @@ _(добавьте скриншоты приложения в папку `screen
 
 ## Сборка из исходников
 
+### Требуемый toolchain
+
+| Компонент | Версия | Назначение |
+|-----------|--------|------------|
+| **Flutter** (stable) | >= 3.5.0, Dart ^3.5.0 | Фреймворк |
+| **Java JDK** | 17+ | Сборка Android |
+| **Android SDK** | 34+ (platform 34) | Сборка Android |
+| **Android NDK** | 28.2+ (устанавливается Gradle) | Нативные библиотеки |
+| **Gradle** | 8.x (обёртка в проекте) | Система сборки |
+| **Linux:** cmake, clang++, GTK3, pkg-config, ninja-build | — | Сборка Linux |
+
+### Сборка
+
 ```bash
 # Установить зависимости
 flutter pub get
@@ -54,12 +67,28 @@ flutter pub get
 # Запустить на подключённом устройстве
 flutter run
 
-# Собрать APK (Android)
+# Android (debug)
 flutter build apk --debug
+# → build/app/outputs/flutter-apk/app-debug.apk
 
-# Собрать Linux (x64)
+# Android (release)
+flutter build apk --release
+# → build/app/outputs/flutter-apk/cofee-release.apk
+
+# Linux x64 (debug)
 flutter build linux --debug
+# → build/linux/x64/debug/bundle/
+
+# Linux x64 (release)
+flutter build linux --release
+# → build/linux/x64/release/bundle/
 ```
+
+### Примечания
+
+- Android SDK и NDK загружаются автоматически при первой сборке через Gradle
+- Для `flutter build apk --release` используется debug-подпись (не подходит для Google Play)
+- APK переименовывается в `cofee-{variant}.apk` на этапе сборки (см. `android/app/build.gradle.kts`)
 
 ---
 
