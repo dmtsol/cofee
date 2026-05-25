@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-1.0.1-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/platform-Android%20%7C%20Linux-lightgrey" alt="Platform">
 </p>
@@ -111,7 +111,7 @@ flutter build apk --debug
 
 # Android (release)
 flutter build apk --release
-# → build/app/outputs/flutter-apk/cofee-1.0.0-release.apk
+# → build/app/outputs/flutter-apk/cofee-1.0.1-release.apk
 
 # Linux x64 (debug)
 flutter build linux --debug
@@ -156,8 +156,8 @@ Makefile упаковывает Linux-бинарник в `cofee-{version}-linux
 
 | Платформа | Файл |
 |-----------|------|
-| 📱 Android | [cofee-1.0.0-release.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-1.0.0-release.apk) |
-| 🐧 Linux | [cofee-1.0.0-linux-release.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.0/cofee-1.0.0-linux-release.tar.gz) |
+| 📱 Android | [cofee-1.0.1-release.apk](https://github.com/dmtsol/cofee/releases/download/v1.0.1/cofee-1.0.1-release.apk) |
+| 🐧 Linux | [cofee-1.0.1-linux-release.tar.gz](https://github.com/dmtsol/cofee/releases/download/v1.0.1/cofee-1.0.1-linux-release.tar.gz) |
 
 ---
 
