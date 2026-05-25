@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import '../models/coffee_calculation.dart';
 
 class StorageService {
-  static List<CoffeeCalculation>? _cache;
+  List<CoffeeCalculation>? _cache;
 
   Future<String> get _filePath async {
     final dir = await getApplicationDocumentsDirectory();
@@ -13,7 +13,7 @@ class StorageService {
   }
 
   Future<List<CoffeeCalculation>> getAll() async {
-    if (_cache != null) return _cache!;
+    if (_cache != null) return List.from(_cache!);
     try {
       final file = File(await _filePath);
       if (!await file.exists()) return [];

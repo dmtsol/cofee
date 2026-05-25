@@ -9,6 +9,10 @@ class RecipeProvider extends ChangeNotifier {
 
   List<CoffeeCalculation> get recipes => _recipes;
 
+  RecipeProvider() {
+    loadRecipes();
+  }
+
   Future<void> loadRecipes() async {
     _recipes = await _storage.getAll();
     if (_recipes.isNotEmpty) {
