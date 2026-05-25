@@ -18,7 +18,6 @@
 ## 📋 Содержание
 
 - [Возможности](#-возможности)
-- [Скриншоты](#-скриншоты)
 - [Как использовать](#-как-использовать)
 - [Системные требования](#-системные-требования)
 - [Сборка из исходников](#-сборка-из-исходников)
@@ -36,31 +35,7 @@
 - **💾 Сохранение и редактирование рецептов** — все рецепты хранятся локально. Можно добавить новый, отредактировать существующий или удалить.
 - **🎨 Три темы оформления** — светлая, тёмная или системная (Material 3).
 
----
 
-## 📸 Скриншоты
-
-### Android
-
-<p float="left">
-  <img src="screenshots/android/cofee-android-01.jpg" width="250" />
-  <img src="screenshots/android/cofee-android-02.jpg" width="250" />
-  <img src="screenshots/android/cofee-android-03.jpg" width="250" />
-</p>
-
-### Linux
-
-<p float="left">
-  <img src="screenshots/linux/cofee-linux-01.png" width="400" />
-  <img src="screenshots/linux/cofee-linux-02.png" width="400" />
-</p>
-<p float="left">
-  <img src="screenshots/linux/cofee-linux-03.png" width="400" />
-  <img src="screenshots/linux/cofee-linux-04.png" width="400" />
-  <img src="screenshots/linux/cofee-linux-05.png" width="400" />
-</p>
-
----
 
 ## 📖 Как использовать
 

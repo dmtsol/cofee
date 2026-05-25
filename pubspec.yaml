@@ -61,9 +61,9 @@ flutter:
 flutter_launcher_icons:
   android: true
   linux: true
-  image_path: "screenshots/cofee-icon.png"
+  image_path: "cofee-icon.png"
   adaptive_icon_background: "#6F4E37"
-  adaptive_icon_foreground: "screenshots/cofee-icon.png"
+  adaptive_icon_foreground: "cofee-icon.png"
 
   # To add assets to your application, add an assets section, like this:
   # assets:
